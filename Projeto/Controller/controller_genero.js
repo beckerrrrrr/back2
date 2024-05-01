@@ -128,7 +128,7 @@ const getListarGenero = async function(){
             return false
         }
     }
-
+//testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     const getBuscarGenero = async function(id){
         let idGenero = id
         let generoJSON = {}
