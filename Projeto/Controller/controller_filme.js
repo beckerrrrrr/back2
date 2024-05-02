@@ -6,7 +6,7 @@
  *******************************************************************************************************************************************/
 
 //Import do arquivo de configuração do projeto
-const message = require('../modulo/config.js')
+const message = require('../model/config.js')
 
 //Import o aquivo DAO que fará a comunicação com o Banco de Dados
 const filmeDAO = require('../model/DAO/filme.js')
@@ -163,6 +163,7 @@ const setAtualizarFilme=async function(id, dadosFilme, contentType){
         }
     }
     }catch(error){
+        console.log(error)
         return message.ERROR_INTERNAL_SERVER //500 erro na controller
     }
 

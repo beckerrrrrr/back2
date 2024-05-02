@@ -91,7 +91,7 @@ const updateFilme = async function() {
                                                data_relancamento = '${dadosFilme.data_relancamento}',
                                                foto_capa = '${dadosFilme.foto_capa}',
                                                valor_unitario = '${dadosFilme.valor_unitario}'
-                    where id = ${id}`;
+                where id = ${id}`;
         }else {
             sql = `update tbl_filme set
                                                nome = '${dadosFilme.nome}',

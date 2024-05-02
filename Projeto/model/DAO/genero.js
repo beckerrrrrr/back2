@@ -7,7 +7,7 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient();
 
-const inserirGenero=async function(dadosGenero){
+ const inserirGenero=async function(dadosGenero){
     try {
         let sql=`insert into tbl_genero (
                 nome
@@ -24,7 +24,7 @@ const inserirGenero=async function(dadosGenero){
     }
 }
 
-const atualizarGenero=async function(id, dadosGenero){
+ const atualizarGenero=async function(id, dadosGenero){
     try {
         let sql=`
             update tbl_genero 
@@ -44,7 +44,7 @@ const atualizarGenero=async function(id, dadosGenero){
     }
 }
 
-const deletarGenero = async (id) => {
+ const deletarGenero = async (id) => {
 
     try {
         let sql = `delete from tbl_genero where id = ${id}`
@@ -59,7 +59,7 @@ const deletarGenero = async (id) => {
 
 }
 
-const selecionarGeneros = async function(){
+ const selecionarGeneros = async function(){
 
     let sql = 'select * from tbl_genero'
 
@@ -73,7 +73,7 @@ const selecionarGeneros = async function(){
 }
 }
 
-const selecionarIdGenero = async function(id){
+ const selecionarIdGenero = async function(id){
     try{
     let sql = `select * from tbl_genero where id= ${id}`
     let genero = await prisma.$queryRawUnsafe(sql)
@@ -83,7 +83,7 @@ catch(error){
     return false
 }}
 
-module.export= {
+module.exports = {
     inserirGenero,
     atualizarGenero,
     selecionarGeneros,
