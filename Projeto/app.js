@@ -33,7 +33,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const funcoes = require('./Controller/funcoes.js')
-
 const app = express()
 app.use((request, response, next) => {
 
@@ -41,7 +40,6 @@ app.use((request, response, next) => {
     response.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     app.use(cors())
     next()
-
 })
 
 /*  Importar os arquivos da controller do projeto */
@@ -50,9 +48,6 @@ app.use((request, response, next) => {
         const controllerClassificacao = require('./Controller/controller_classificacao.js');
         const controllerAtores = require('./Controller/controller_atores.js');
         const controllerDiretores = require('./Controller/controller_diretores.js');
-
-
- 
 
 /* Criando um objeto para controlar a chegada dos dados da requisição em formato JSON */
     const bodyParserJSON = bodyParser.json();
@@ -136,11 +131,8 @@ app.post('/v2/ACMEFilmes/filme', cors(), bodyParserJSON, async function(request,
 app.put('/v2/ACMEFilmes/update/:id', cors(), bodyParserJSON, async function(request, response){
 
     let idFilme = request.params.id
-
     let contentType = request.headers['content-type'];
-
     let dadosBody = request.body;
-
     let updateFilme = await controllerFilmes.setAtualizarFilme(idFilme, dadosBody, contentType);
 
     response.status(updateFilme.status_code);
@@ -150,15 +142,11 @@ app.put('/v2/ACMEFilmes/update/:id', cors(), bodyParserJSON, async function(requ
 app.delete('/v2/ACMEFilmes/deleteFilme/:id', cors(), bodyParserJSON, async function(request, response){
 
     let idFilme = request.params.id;
-
     let dadosFilme = await controllerFilmes.setExcluirFilme(idFilme);
 
     response.status(dadosFilme.status_code);
     response.json(dadosFilme);
 })
-
-
-
 
 //genero
 
@@ -172,14 +160,12 @@ app.get('/v2/ACMEFilmes/generos', cors(), async function(request, response, next
         response.json({message: 'Nenhum registro encontrado'})
         response.status(404)
     }
-
 })
 
 app.post('/v2/acmeFilmes/generos', cors(), bodyParserJSON, async function(request, response, next){
 
     let contentType = request.headers['content-type']
     let dadosBody = request.body
-
     let resultDados = await controllerGenero.setInserirNovoGenero(dadosBody, contentType)
 
     response.status(resultDados.status_code)
@@ -193,7 +179,6 @@ app.delete('/v2/AcmeFilmes/generos/:id',  cors(), bodyParserJSON, async (request
 
     response.status(dadosGenero.status_code)
     response.json(dadosGenero)
-
 })
 
 app.put('/v2/AcmeFilmes/update/:id', cors(), bodyParserJSON, async function(request,response,next){
@@ -206,7 +191,6 @@ app.put('/v2/AcmeFilmes/update/:id', cors(), bodyParserJSON, async function(requ
 
     response.status(resultUptadedGenero.status_code)
     response.json(resultUptadedGenero)
-
 })
 
 //classificacao
@@ -221,20 +205,16 @@ app.get('/v2/Acme/Classificacao', cors(), async function(request, response, next
         response.json({message: 'Nenhum registro encontrado'})
         response.status(404)
     }
-
 })
 
 app.post('/v2/Acme/Classificacao', cors(), bodyParser.json(), async function(request, response, next){
     let contentType = request.headers['content-type']
     console.log('contentType')
-    
     let dadosBody = request.body
-
     let resultDados = await controllerClassificacao.setInserirClassificacao(dadosBody, contentType)
 
     response.status(resultDados.status_code)
     response.json(resultDados)
-
 })
 
 
@@ -245,8 +225,8 @@ app.delete('/v2/Acme/Classificacao/:id',  cors(), bodyParserJSON, async (request
 
     response.status(dadosClassificacao.status_code)
     response.json(dadosClassificacao)
-
 })
+
 app.put('/v2/AcmeClassificacao/update/:id', cors(), bodyParserJSON, async function(request,response,next){
 
     let ClassificacaoID = request.params.id
@@ -276,9 +256,7 @@ app.get('/v2/AcmeAtores/atores', cors(), async function(request, response, next)
 })
 app.post('/v2/AcmeAtores/atores', cors(), bodyParser.json(), async function(request, response, next){
     let contentType = request.headers['content-type']
-    
     let dadosBody = request.body
-
     let resultDados = await controllerAtores.setInserirAtores(dadosBody, contentType)
 
     response.status(resultDados.status_code)
@@ -310,9 +288,7 @@ app.put('/v2/AcmeAtores/update/:id', cors(), bodyParserJSON, async function(requ
 
 })
 
-
 //diretores
-
 app.get('/v2/AcmeFilmes/diretores', cors(), async function(request, response, next){
     let dadosAtores = await controllerDiretores.getListarDiretores()
     if (dadosAtores){
@@ -322,7 +298,6 @@ app.get('/v2/AcmeFilmes/diretores', cors(), async function(request, response, ne
         response.json({message: 'Nenhum registro encontrado'})
         response.status(404)
     }
-
 })
 
 app.post('/v2/AcmeFilmes/diretores', cors(), bodyParser.json(), async function(request, response, next){
@@ -332,7 +307,6 @@ app.post('/v2/AcmeFilmes/diretores', cors(), bodyParser.json(), async function(r
 
     response.status(resultDados.status_code)
     response.json(resultDados)
-
 })
 
 app.delete('/v2/AcmeFilmes/diretores/:id',  cors(), bodyParserJSON, async (request, response, next) => {
@@ -342,7 +316,6 @@ app.delete('/v2/AcmeFilmes/diretores/:id',  cors(), bodyParserJSON, async (reque
 
     response.status(dadosDiretores.status_code)
     response.json(dadosDiretores)
-
 })
 
 app.put('/v2/AcmeFilmes/update/:id', cors(), bodyParserJSON, async function(request,response,next){
@@ -355,10 +328,7 @@ app.put('/v2/AcmeFilmes/update/:id', cors(), bodyParserJSON, async function(requ
 
     response.status(resultUptadedDiretores.status_code)
     response.json(resultUptadedDiretores)
-
 })
-
-
 
 //Executa a API e faz ela ficar aguardando requisições
 app.listen('3000', function() {

@@ -142,12 +142,12 @@ const setAtualizarDiretores = async function(id, dadosDiretores, contentType){
             let atualizarDiretorJSON={}
         
             if (dadosDiretores.nome == '' || dadosDiretores.nome == undefined || dadosDiretores.nome == null || dadosDiretores.nome.length > 2000 ||
-                dadosDiretores.nome_artistico == ''|| dadosDiretores.nome_artistico == undefined || dadosDiretores.nome_artistico == null || dadosDiretores.nome_artistico.length > 2000 ||
-                dadosDiretores.foto == ''|| dadosDiretores.foto == undefined || dadosDiretores.foto == null || dadosDiretores.foto.length > 1000 ||
-                dadosDiretores.data_nascimento == ''|| dadosDiretores.data_nascimento == undefined || dadosDiretores.data_nascimento == null || dadosDiretores.data_nascimento > 300 ||
-                dadosDiretores.data_falecimento == ''|| dadosDiretores.data_falecimento == undefined || dadosDiretores.data_falecimento == null || dadosDiretores.data_falecimento > 300||
-                dadosDiretores.biografia == ''|| dadosDiretores.biografia == undefined || dadosDiretores.biografia == null || dadosDiretores.biografia > 3000 ||
-                dadosDiretores.id_sexo == ''|| dadosDiretores.id_sexo == undefined || dadosDiretores.id_sexo == null
+            dadosDiretores.nome_artistico == ''|| dadosDiretores.nome_artistico == undefined || dadosDiretores.nome_artistico == null || dadosDiretores.nome_artistico.length > 2000 ||
+            dadosDiretores.foto == ''|| dadosDiretores.foto == undefined || dadosDiretores.foto == null || dadosDiretores.foto.length > 1000 ||
+            dadosDiretores.data_nascimento == ''|| dadosDiretores.data_nascimento == undefined || dadosDiretores.data_nascimento == null || dadosDiretores.data_nascimento > 300 ||
+            dadosDiretores.data_falecimento == ''|| dadosDiretores.data_falecimento == undefined || dadosDiretores.data_falecimento == null || dadosDiretores.data_falecimento > 300||
+            dadosDiretores.biografia == ''|| dadosDiretores.biografia == undefined || dadosDiretores.biografia == null || dadosDiretores.biografia > 3000 ||
+            dadosDiretores.id_sexo == ''|| dadosDiretores.id_sexo == undefined || dadosDiretores.id_sexo == null
                 ){
                 return message.ERROR_REQUIRED_FIELDS 
             }else{
