@@ -16,13 +16,13 @@ const setInserirNovoGenero = async function (dadosGenero, contentType) {
 
             else {
 
-                let novoGenero = await generoDAO.insertGenero(dadosGenero)
+                let novoGenero = await generoDAO.inserirGenero(dadosGenero)
 
                 if (novoGenero) {
                     novoGeneroJSON.genero = dadosGenero
-                    novoGeneroJSON.status = message.SUCESS_CREATED_ITEM.status
-                    novoGeneroJSON.status_code = message.SUCESS_CREATED_ITEM.status_code
-                    novoGeneroJSON.message = message.SUCESS_CREATED_ITEM.message
+                    novoGeneroJSON.status = message.SUCCESS_CREATED_ITEM.status
+                    novoGeneroJSON.status_code = message.SUCCESS_CREATED_ITEM.status_code
+                    novoGeneroJSON.message = message.SUCCESS_CREATED_ITEM.message
 
                     return novoGeneroJSON
                 }
@@ -35,6 +35,7 @@ const setInserirNovoGenero = async function (dadosGenero, contentType) {
             return message.ERROR_CONTENT_TYPE
         }
     } catch (error) {
+        console.log(error)
         return message.ERROR_INTERNAL_SERVER
     }
 }
@@ -47,20 +48,20 @@ const setAtualizarGenero = async function(id, dadosGenero, contentType){
             let atualizarGeneroJSON={}
     
             console.log(dadosGenero.nome)
-            if( dadosGenero.nome             == '' || dadosGenero.nome            == undefined || dadosGenero.nome            == null || dadosGenero.nome.length              > 80    ){
+            if( dadosGenero.nome             == '' || dadosGenero.nome            == undefined || dadosGenero.nome            == null || dadosGenero.nome.length              > 20    ){
                 return message.ERROR_REQUIRED_FIELDS 
             }else{
                 statusValidated = true
             }
                 
                     if (statusValidated){
-                        let generoAtualizado = await generoDAO.updateGenero(id, dadosGenero)
+                        let generoAtualizado = await generoDAO.atualizarGenero(id, dadosGenero)
 
                         console.log(generoAtualizado)
                         if(generoAtualizado){
-                            atualizarGeneroJSON.status         = message.SUCESS_CREATED_ITEM.status;
-                            atualizarGeneroJSON.status_code    = message.SUCESS_CREATED_ITEM.status_code;
-                            atualizarGeneroJSON.message        = message.SUCESS_CREATED_ITEM.message,
+                            atualizarGeneroJSON.status         = message.SUCCESS_UPDATED_ITEM.status;
+                            atualizarGeneroJSON.status_code    = message.SUCCESS_UPDATED_ITEM.status_code;
+                            atualizarGeneroJSON.message        = message.SUCCESS_UPDATED_ITEM.message,
                             atualizarGeneroJSON.id = id,
                             atualizarGeneroJSON.genero          = dadosGenero
                 
@@ -68,12 +69,12 @@ const setAtualizarGenero = async function(id, dadosGenero, contentType){
                         }else{
                             return message.ERROR_INTERNAL_SERVER_DB 
                         }
-                    
-            }
+                     }
         }else{
             return message.ERROR_CONTENT_TYPE
         }
     }catch(error){
+        console.log(error)
         return message.ERROR_INTERNAL_SERVER
     }
 }
@@ -85,7 +86,7 @@ const setExcluirGenero = async function (id) {
 
         let validaGenero = await getBuscarGenero(idGenero)
 
-        let dadosGenero = await generoDAO.deleteGenero(idGenero)
+        let dadosGenero = await generoDAO.deletarGenero(idGenero)
 
         if (idGenero == '' || idGenero == undefined || isNaN(idGenero)) {
 
@@ -97,7 +98,7 @@ const setExcluirGenero = async function (id) {
         } else {
             
             if(dadosGenero)
-                return message.SUCESS_DELETED_ITEM 
+                return message.SUCCESS_DELETED_ITEM 
             else
                 return message.ERROR_INTERNAL_SERVER_DB
 
@@ -114,7 +115,7 @@ const getListarGenero = async function(){
 
         let generosJSON = {}
 
-        let dadosGenero = await generoDAO.selectAllGeneros()
+        let dadosGenero = await generoDAO.selecionarGeneros()
     
 
         if(dadosGenero){
@@ -137,7 +138,7 @@ const getListarGenero = async function(){
             return message.ERROR_INVALID_ID
         }else{
     
-            let dadosGenero = await generoDAO.selectByIdGenero(idGenero)
+            let dadosGenero = await generoDAO.selecionarIdGenero(idGenero)
             if(dadosGenero){
     
                 if(dadosGenero.length > 0){

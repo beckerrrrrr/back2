@@ -1,4 +1,4 @@
-var infoFilmes = require('../modulo/filmes.js')
+var infoFilmes = require('../model/filmes.js')
 
 const getListarTodosFilmes = () => {
     const filmes = infoFilmes.filmes.filmes
